@@ -4,9 +4,19 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+  pointer-events: none;
+}
+
+h1{
+  pointer-events: auto;
 }
 
 #renderCanvas{
+  left:0;
+  top:0;
   padding: 0;
+  position:fixed;
   margin: 0;
+  z-index: -99;
+  pointer-events: auto;
 }
