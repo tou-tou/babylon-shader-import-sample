@@ -39,5 +39,5 @@ jobs:
           yarn build
           echo "$SECRET_KEY" > secret_key
           chmod 600 secret_key
-          scp -oStrictHostKeyChecking=no -i secret_key ./dist  ${USER}@${HOST}:~/toutou-node/babylon-shader-import-sample/dist 
+          scp -oStrictHostKeyChecking=no -i secret_key -pr ./dist  ${USER}@${HOST}:~/toutou-node/babylon-shader-import-sample/dist 
           ssh -oStrictHostKeyChecking=no ${USER}@${HOST} -i secret_key "cd ~/toutou-node/babylon-shader-import-sample && git checkout . && git pull origin main && make prod-update"
