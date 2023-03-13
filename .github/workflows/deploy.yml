@@ -1,12 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name: deploy
+name: Deploy static content
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ main ]
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -17,30 +17,23 @@ jobs:
   deploy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    
-    step:
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v3.5.1
-      with:
-        node-version: 18.x
-          
-      run: yarn install
-      run: yarn build
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-    - name: ssh deploy
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      env:
-        SECRET_KEY: ${{ secrets.SSH_KEY }}
-        USER: ${{ secrets.SSH_USER }}
-        HOST: ${{ secrets.SSH_HOST }}
-      run: |
-        echo "$SECRET_KEY" > secret_key
-        chmod 600 secret_key
-        scp /dist  ${USER}@${HOST}:~/toutou-node/babylon-shader-import-sample/dist -i secret_key
-        ssh -oStrictHostKeyChecking=no ${USER}@${HOST} -i secret_key "cd ~/toutou-node/babylon-shader-import-sample && git checkout . && git pull origin main && make prod-update"
-        
+      - name: Build
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - run: yarn install
+      - run: yarn build
+
+      - name: deploy
+        run: |
+          yarn install
+          yarn build
+          echo "$SECRET_KEY" > secret_key
+          chmod 600 secret_key
+          scp ./dist  ${USER}@${HOST}:~/toutou-node/babylon-shader-import-sample/dist -i secret_key
+          ssh -oStrictHostKeyChecking=no ${USER}@${HOST} -i secret_key "cd ~/toutou-node/babylon-shader-import-sample && git checkout . && git pull origin main && make prod-update"
