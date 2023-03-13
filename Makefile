@@ -13,8 +13,8 @@ local-update:
 	docker-compose exec -T nginx ash -c "yarn build"
 
 prod-deploy:
-	docker-compose up -d
+	docker-compose -f deploy.yaml up -d
 prod-update:
-	docker-compose up -d
+	docker-compose -f deploy.yaml up -d
 stop:
 	docker-compose  stop

@@ -3,7 +3,7 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: ./docker/nginx/Dockerfile
+      dockerfile: ./docker/Dockerfile
     container_name: "shader-sandbox"
     volumes:
       - .:/var/www/html
