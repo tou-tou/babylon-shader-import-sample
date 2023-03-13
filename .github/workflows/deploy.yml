@@ -24,8 +24,8 @@ jobs:
     step:
     - name: Setup Node.js environment
       uses: actions/setup-node@v3.5.1
-        with:
-          node-version: 18.x
+      with:
+        node-version: 18.x
           
       run: yarn install
       run: yarn build
