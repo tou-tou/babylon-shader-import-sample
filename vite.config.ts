@@ -6,6 +6,7 @@ export default defineConfig(({ mode }) => {
   }
   // config for gh pages
   return {
-    base: '/babylon-shader-import-sample/',
+    // base: '/babylon-shader-import-sample/',
+    base: '/'
   };
 });

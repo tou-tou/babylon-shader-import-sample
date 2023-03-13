@@ -8,11 +8,11 @@ Vite環境におけるBabylon.jsでシェーダをインポートするときの
 
 ## Environment
 
-||環境|
-|:--:|:--:|
-|Node.js| v16.18.0|
-|vite|v3.2.3|
-|@babylonjs/core|v5.34.0|
+|                 |   環境   |
+| :-------------: | :------: |
+|     Node.js     | v16.18.0 |
+|      vite       |  v3.2.3  |
+| @babylonjs/core | v5.34.0  |
 
 ## Install & Usage
 
@@ -22,6 +22,25 @@ yarn install
 
 # loanch dev server
 yarn dev
+```
+
+### docker-composeを利用する場合
+```bash
+docker-compose exec -T nginx ash -c "yarn install"
+
+docker-compose exec -T nginx ash -c "yarn build"
+
+docker-compose exec -T nginx ash -c "yarn dev"
+```
+
+
+## デプロイ時
+### docker-composeを利用する場合
+```bash
+docker-compose exec -T nginx ash -c "yarn install"
+
+docker-compose exec -T nginx ash -c "yarn build"
+
 ```
 
 ## Contact
